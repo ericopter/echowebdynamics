@@ -144,7 +144,7 @@ form div.error {
 //  02 - Header & Footer
 /////////////////////////////////////////////////////////////////////*/
 #header {
-	padding : 15px 0 10px;
+/*	padding : 15px 0 10px;*/
 }
 
 #branding {
@@ -361,7 +361,7 @@ form div.error {
 /*
 	Footer Navigation
 */
-#footer-navigation {
+#sub-footer {
 	padding : 0px 0;
 	font-size : 12px;
 }

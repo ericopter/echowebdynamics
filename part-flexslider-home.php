@@ -89,7 +89,7 @@ endwhile;
 </div> <!-- end .flexslider -->
 </div> <!-- end #home-slideshow -->
 <?php
-if (of_get_option('home-slideshow-width') == 'centered'): ?>
+if (of_get_option('home-slideshow-width') == 'framed'): ?>
 </div>
 <?php 
 endif;

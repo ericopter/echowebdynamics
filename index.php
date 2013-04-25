@@ -2,11 +2,12 @@
 $push = 'left' == of_get_option('sidebar-position') ? 'push_4' : null;
 get_header(); ?>
 <!-- index.php -->
-<div id="index" class="twelve columns <?php echo $push; ?>"><header class="entry-header">
-	<h1 class="page-title">
-		&iexcl;Echo Web Dynamics News!
-	</h1>
-</header><!-- .entry-header -->
+<div id="index" class="twelve columns <?php echo $push; ?>">
+	<header class="entry-header">
+		<h1 class="page-title">
+			&iexcl;Echo Web Dynamics News!
+		</h1>
+	</header><!-- .entry-header -->
 
 	<?php 
 	if ( have_posts() ) : 
@@ -38,7 +39,7 @@ get_header(); ?>
 	<?php 
 	endif; 
 	?>
-</div> <!-- end primary -->
+</div> <!-- end #index -->
 
 <?php 
 get_sidebar(); 
