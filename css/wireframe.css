@@ -1,0 +1,47 @@
+#wrapper,
+#header, 
+#primary-nav,
+#content,
+#footer {
+	border : 1px dotted #999;
+}
+
+/*
+	For layout wireframe
+*/
+#wrapper:before {
+	content : "#wrapper";
+}
+
+#header:before {
+	content : "#header";
+}
+
+#primary-nav:before {
+	content : "#primary-nav";
+}
+
+#content:before {
+	content : "#content";
+}
+
+#sidebar:before {
+	content : "#sidebar";
+}
+
+#footer:before {
+	content : "#footer";
+}
+
+#branding:before {
+	content : "#branding";
+}
+
+#header-nav-wrapper:before {
+	content : '#header-nav-wrapper';
+}
+
+
+#branding, #header-nav-wrapper, #sidebar {
+	background : #EFEFEF;
+}
