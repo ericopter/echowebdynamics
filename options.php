@@ -30,6 +30,56 @@ function optionsframework_options() {
 	// If using image radio buttons, define a directory path
 	$imagepath =  get_template_directory_uri() . '/images/options/';
 	
+	$defaultDev = array(
+		'global' => array(
+			'color-scheme' => array(
+				
+			),
+			'site-width' => array(
+				
+			),
+			'site-layout' => array(
+				
+			),
+			'sidebar-position' => array(
+				
+			),
+			
+		),
+		'global-type' => array(
+			'general' => array(
+				
+			),
+			'links' => array(
+				
+			),
+			'headings' => array(
+				
+			)
+		),
+		'header' => array(
+			
+		),
+		'navigation' => array(
+			
+		),
+		'content' => array(
+			
+		),
+		'footer' => array(
+			
+		),
+		'slideshow' => array(
+			
+		),
+		'contact' => array(
+			
+		),
+		'meta-data' => array(
+			
+		)
+	);
+	
 	$defaults = array(
 		'color-scheme' => array(
 			'default' => 'Blue/Grey (Default)',
@@ -102,10 +152,10 @@ function optionsframework_options() {
 */
 	
 	/*
-		General
+		Global
 	*/
 	$options[] = array(
-		'name' => __('General', 'echotheme'),
+		'name' => __('Global Settings', 'echotheme'),
 		'type' => 'heading'
 	);
 	
@@ -124,6 +174,13 @@ function optionsframework_options() {
 		'id' 	=> 'color-scheme',
 		'std' 	=> 'default',
 		'options' => $defaults['color-scheme']
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Site Logo', 'echotheme'),
+		'desc'	=> __('Upload a custom logo for your site', 'echotheme'),
+		'type' 	=> 'upload',
+		'id' 	=> 'site-logo'
 	);
 	
 	$options[] = array(
@@ -163,52 +220,6 @@ function optionsframework_options() {
 	);
 	
 	$options[] = array(
-		'name' 	=> __('Site Logo', 'echotheme'),
-		'desc'	=> __('Upload a custom logo for your site', 'echotheme'),
-		'type' 	=> 'upload',
-		'id' 	=> 'site-logo'
-	);
-	
-	$options[] = array(
-		'name' 	=> __('Meta Description', 'echotheme'),
-		'desc'	=> __('Enter your site meta description', 'echotheme'),
-		'type' 	=> 'textarea',
-		'id' 	=> 'meta-description',
-	);
-	
-	$options[] = array(
-		'name' 	=> __('Meta Keywords', 'echotheme'),
-		'desc'	=> __('Enter your sites meta keywords (comma separated)', 'echotheme'),
-		'type' 	=> 'textarea',
-		'id' 	=> 'meta-keywords',
-	);
-	
-	$options[] = array(
-		'name' 	=> __('Google Analytics', 'echotheme'),
-		'desc'	=> __('Paste in your google analytics code (Script tag not required)', 'echotheme'),
-		'type' 	=> 'textarea',
-		'id' 	=> 'google-analytics',
-	);
-	
-	$options[] = array(
-		'name' 	=> __('Footer Copy', 'echotheme'),
-		'desc'	=> __('Add your "Footer" text here', 'echotheme'),
-		'type' 	=> 'textarea',
-		'id' 	=> 'footer-copy',
-		'std'	=> $defaults['footer-copy'],
-	);
-	
-	
-	
-	/*
-		Backgrounds
-	*/
-	$options[] = array(
-		'name' => __('Backgrounds', 'echotheme'),
-		'type' => 'heading'
-	);
-	
-	$options[] = array(
 		'name' 	=> __('Body Background', 'echotheme'),
 		'desc'	=> __('Site Body Background', 'echotheme'),
 		'type' 	=> 'background',
@@ -222,11 +233,103 @@ function optionsframework_options() {
 		'id' 	=> 'wrapper-background',
 	);
 	
+	
+	
+	/*
+		Global Typography
+	*/
+	$options[] = array(
+		'name' => __('Global Typography', 'options_framework_theme'),
+		'type' => 'heading'
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Global Typography', 'echotheme'),
+		'desc'	=> __('Set your sites global font characteristics', 'echotheme'),
+		'type' 	=> 'typography',
+		'id' 	=> 'global-type',
+		'std'	=> $defaults['typo-general'],
+		'options' => $defaults['typo-general']
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Global Links', 'echotheme'),
+		'desc'	=> __('Set the global link characteristics for the site', 'echotheme'),
+		'type' 	=> 'typography',
+		'id' 	=> 'global-type-links',
+		'std'	=> $defaults['typo-general-links'],
+		'options' => $defaults['typo-general-links']
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Global Headings', 'echotheme'),
+		'desc'	=> __('Set the global Heading characteristics for the site', 'echotheme'),
+		'type' 	=> 'typography',
+		'id' 	=> 'global-type-headings',
+		'std'	=> $defaults['typo-general-links'],
+		'options' => $defaults['typo-general-links']
+	);
+	
+	
+	
+	/*
+		Header
+	*/
+	$options[] = array(
+		'name' => __('Header', 'echotheme'),
+		'type' => 'heading'
+	);
+	
 	$options[] = array(
 		'name' 	=> __('Header Background', 'echotheme'),
 		'desc'	=> __('Site Header Background', 'echotheme'),
 		'type' 	=> 'background',
 		'id' 	=> 'header-background',
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Header Typography', 'echotheme'),
+		'desc'	=> __('Set your sites global font characteristics', 'echotheme'),
+		'type' 	=> 'typography',
+		'id' 	=> 'header-type',
+		'std'	=> $defaults['typo-general'],
+		'options' => $defaults['typo-general']
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Global Links', 'echotheme'),
+		'desc'	=> __('Set the global link characteristics for the site', 'echotheme'),
+		'type' 	=> 'typography',
+		'id' 	=> 'header-type-links',
+		'std'	=> $defaults['typo-general-links'],
+		'options' => $defaults['typo-general-links']
+	);
+	
+	
+	
+	/*
+		Navigation
+	*/
+	$options[] = array(
+		'name' => __('Navigation', 'echotheme'),
+		'type' => 'heading'
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Navigation Bar Background', 'echotheme'),
+		'desc'	=> __('Site Header Background', 'echotheme'),
+		'type' 	=> 'background',
+		'id' 	=> 'navigation-background',
+	);
+	
+	
+	
+	/*
+		Content
+	*/
+	$options[] = array(
+		'name' => __('Content', 'echotheme'),
+		'type' => 'heading'
 	);
 	
 	$options[] = array(
@@ -236,6 +339,16 @@ function optionsframework_options() {
 		'id' 	=> 'content-background',
 	);
 	
+	
+	
+	/*
+		Footer
+	*/
+	$options[] = array(
+		'name' => __('Footer', 'echotheme'),
+		'type' => 'heading'
+	);
+	
 	$options[] = array(
 		'name' 	=> __('Footer Background', 'echotheme'),
 		'desc'	=> __('Site Footer Background', 'echotheme'),
@@ -243,32 +356,12 @@ function optionsframework_options() {
 		'id' 	=> 'footer-background',
 	);
 	
-	
-	
-	/*
-		Typography
-	*/
 	$options[] = array(
-		'name' => __('Typography', 'options_framework_theme'),
-		'type' => 'heading'
-	);
-	
-	$options[] = array(
-		'name' 	=> __('Global Typography', 'echotheme'),
-		'desc'	=> __('Set your sites global font characteristics', 'echotheme'),
-		'type' 	=> 'typography',
-		'id' 	=> 'typo-general',
-		'std'	=> $defaults['typo-general'],
-		'options' => $defaults['typo-general']
-	);
-	
-	$options[] = array(
-		'name' 	=> __('Global Links', 'echotheme'),
-		'desc'	=> __('Set the global link characteristics for the site', 'echotheme'),
-		'type' 	=> 'typography',
-		'id' 	=> 'typo-general-links',
-		'std'	=> $defaults['typo-general-links'],
-		'options' => $defaults['typo-general-links']
+		'name' 	=> __('Footer Copy', 'echotheme'),
+		'desc'	=> __('Add your "Footer" text here', 'echotheme'),
+		'type' 	=> 'textarea',
+		'id' 	=> 'footer-copy',
+		'std'	=> $defaults['footer-copy'],
 	);
 	
 	
@@ -454,6 +547,35 @@ function optionsframework_options() {
 			'blackglass' => 'Black Glass',
 			'clean' => 'Clean'
 		)
+	);
+	
+	/*
+		Meta Data
+	*/
+	$options[] = array(
+		'name'	=> __('Meta Data', 'echotheme'),
+		'type'	=> 'heading'
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Meta Description', 'echotheme'),
+		'desc'	=> __('Enter your site meta description', 'echotheme'),
+		'type' 	=> 'textarea',
+		'id' 	=> 'meta-description',
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Meta Keywords', 'echotheme'),
+		'desc'	=> __('Enter your sites meta keywords (comma separated)', 'echotheme'),
+		'type' 	=> 'textarea',
+		'id' 	=> 'meta-keywords',
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Google Analytics', 'echotheme'),
+		'desc'	=> __('Paste in your google analytics code (Script tag not required)', 'echotheme'),
+		'type' 	=> 'textarea',
+		'id' 	=> 'google-analytics',
 	);
 
 	return $options;

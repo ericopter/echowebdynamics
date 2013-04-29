@@ -45,6 +45,7 @@
 								d=b.addMenu({title:"Gallery Sliders"});
 									a.addImmediate(d,"jQuery Cycle", "[jquerycycle]");
 									a.addImmediate(d,"Flexslider", "[flexslider]");
+									a.addImmediate(d,"Nivo Slider", "[nivoslider]");
 							});
 						return d
 					

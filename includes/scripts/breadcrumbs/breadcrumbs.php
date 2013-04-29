@@ -34,7 +34,7 @@ class simple_breadcrumb {
         );
         $markup = $this->options['before'] . $this->options['delimiter'] . $this->options['after'];
         global $post;
-        echo '<div class="crumbs"><a href="' . get_bloginfo('url') . '">';
+        echo '<div class="sixteen columns"><a href="' . get_bloginfo('url') . '">';
         //bloginfo('name');
         esc_html_e('Home', 'udesign');
         echo "</a>";

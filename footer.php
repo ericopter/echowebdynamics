@@ -30,15 +30,30 @@
 		$footer_copy = of_get_option('footer-copy');
 		
 		/**
+		 * Output the main menu if set
+		 */
+		$args = array(
+			'theme_location' 	=> 'footer-menu',
+			'container'       	=> false,
+			// 'container_class' 	=> 'container',
+			'menu_id'        	=> 'footer-nav',
+			'menu_class'		=> 'hori-nav container',
+			'echo'				=> false,
+			'fallback_cb' 		=> false,
+			'depth'				=> 1
+		);
+		$menu = wp_nav_menu($args);
+		
+		/**
 		 * If one or both output container
 		 */
-		if ($footer_copy) :
+		if ($footer_copy || $menu) :
 		?>
 		<div id="sub-footer">
 			<div class="container">
 				<?php
 				if ($menu) {
-					// echo $menu;
+					echo $menu;
 				}
 				if ($footer_copy) :
 				?>

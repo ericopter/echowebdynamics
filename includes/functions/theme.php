@@ -42,6 +42,7 @@ function echotheme_setup()
 	register_nav_menus(array( 
 		'header-menu' 	=> 'Header Area Menu',
 		'top-menu' 		=> 'Horizontal Nav Bar',
+		'footer-menu'	=> 'Footer Menu'
 	));
 	
 	// Register all theme related assests

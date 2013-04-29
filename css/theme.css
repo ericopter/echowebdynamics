@@ -293,6 +293,7 @@ form div.error {
 
 #header-nav {
 	z-index : 998;
+	float : right;
 	font-size : 14px;
 }
 
@@ -389,10 +390,7 @@ form div.error {
 */
 #breadcrumbs {
 	line-height : 25px;
-}
-
-#breadcrumbs .crumbs {
-	margin-left : 10px;
+	font-size : 12px;
 }
 
 #breadcrumbs a {
