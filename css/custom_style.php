@@ -8,72 +8,16 @@ if ( file_exists( $root.'/wp-load.php' ) ) {
 
 header("Content-type: text/css");
 
-// custom type?
-if ($type = of_get_option('typo-general')) : ?>
+/**********************************************************
+Body Options	
+**********************************************************/
+ ?>
 body {
-<?php 
-// var_dump($type) ;
-if ($type['face']) {
-	echo 'font-family : ' . $type['face'] . ';';
-}
-
-if ($type['size']) {
-	echo 'font-size : ' . $type['size'] . ';';
-}
-
-if ($type['color']) {
-	echo 'color : ' . $type['color'] . ';';
-}
-
-?>
-}
-
 <?php
-endif;
-
-// set up our dynamic layout properties
-if ('framed' == of_get_option('site-layout')) :
-// get the site-width property then add some padding space
-$width = of_get_option('site-width')  . 'px';
-?>
-#wrapper {
-	width : <?php echo $width ?>;
-	max-width : 100%;
-	margin : 20px auto;
-	<?php
-	if (1 == of_get_option('frame-shadow')) : ?>
-	box-shadow : 0 0 4px #999;
-	<?php
-	endif; //end frame shadow
-	
-	
-	if ($border= of_get_option('frame-border')) : ?>
-	border : 1px solid <?php echo $border; ?>;
-	<?php
-	endif; //end frame shadow
-	?>
-}
-<?php
-endif; // end framed?
-
-// set up custom logo properties
-if ($sLogo = of_get_option('site-logo')):
-	// get the logo dimensions
-	$size = getimagesize($sLogo);
-?>
-#branding h2 a {
-	background-image : url('<?php echo $sLogo; ?>');
-	width : <?php echo $size[0] ?>px;
-	height : <?php echo $size[1] ?>px;
-}
-<?php
-endif;
-
 // set up custom body background properties
-if ($body_bg = of_get_option('body-background')) :
-?>
-body {
-	<?php
+if (of_get_option('global-custom-background')) :
+	$body_bg = of_get_option('body-background');
+
 	if ($body_bg['color']) { ?>
 	background-color : <?php echo $body_bg['color']; ?>;
 	<?php
@@ -82,7 +26,6 @@ body {
 	if ($body_bg['image']) {?>
 	background-image : url('<?php echo $body_bg['image'] ?>');
 	<?php
-	}
 	
 	if ($body_bg['repeat']) { ?>
 	background-repeat : <?php echo $body_bg['repeat']; ?>;
@@ -98,45 +41,106 @@ body {
 	background-attachment : <?php echo $body_bg['attachment']; ?>;
 	<?php
 	}
-	?>
-}
-<?php
-endif;
+	}
+	
 
-// set up custom body background properties
-if ($wrapper_bg = of_get_option('wrapper-background')) :
+endif;
+?>
+}
+
+<?php
+
+
+
+
+
+/**********************************************************
+#wrapper Options	
+**********************************************************/
+// set up our dynamic layout properties
 ?>
 #wrapper {
-	<?php
+<?php
+/*
+	Are we using full width or framed layout
+*/
+if ('framed' == of_get_option('site-layout')) :
+	
+// get the site-width property then add some padding space
+$width = of_get_option('site-width')  . 'px';
+?>
+	width : <?php echo $width ?>;
+	max-width : 100%;
+	margin : 20px auto;
+<?php
+
+	if (of_get_option('frame-shadow')) : 
+		
+	$shadowSize = of_get_option('frame-shadow-size') ? intval(of_get_option('frame-shadow-size')) . 'px': '4px';
+	$shadowColor = of_get_option('frame-shadow-color') ? of_get_option('frame-shadow-color') : '#999999'; 
+	
+	?>
+	box-shadow : 0 0 <?php echo $shadowSize . ' ' . $shadowColor; ?>;
+<?php
+	endif; //end frame shadow
+	
+	
+	if ($border= of_get_option('frame-border')) : ?>
+	border : 1px solid <?php echo $border; ?>;
+<?php
+	endif; //end frame shadow
+
+endif; // end framed?
+
+
+/*
+	Set our custom #wrapper background image
+*/
+if (of_get_option('global-custom-background')) :
+	
+	$wrapper_bg = of_get_option('wrapper-background');
+	
 	if ($wrapper_bg['color']) { ?>
 	background-color : <?php echo $wrapper_bg['color']; ?>;
 	<?php
 	}
 	
-	if ($wrapper_bg['image']) {?>
+	// output image properties if image set
+	if ($wrapper_bg['image']) {
+	// if we have an image, output it and then include the other image options
+	?>
 	background-image : url('<?php echo $wrapper_bg['image'] ?>');
 	<?php
-	}
-	
+	// image repeat
 	if ($wrapper_bg['repeat']) { ?>
 	background-repeat : <?php echo $wrapper_bg['repeat']; ?>;
 	<?php
 	}
-	
+	// image position
 	if ($wrapper_bg['position']) { ?>
 	background-position : <?php echo $wrapper_bg['position']; ?>;
 	<?php
 	}
-	
+	// image attachement
 	if ($wrapper_bg['attachment']) { ?>
 	background-attachment : <?php echo $wrapper_bg['attachment']; ?>;
 	<?php
 	}
-	?>
+	
+	} // endif image
+	
+	
+endif; // end if global-custom-background
+?>
 }
 <?php
-endif;
 
+
+
+
+/**********************************************************
+Header Options	
+**********************************************************/
 // set up custom header properties
 if ($header_bg = of_get_option('header-background')) :
 ?>
@@ -170,6 +174,27 @@ if ($header_bg = of_get_option('header-background')) :
 }
 <?php
 endif;
+/**********************************************************
+Logo Options	
+**********************************************************/
+// set up custom logo properties
+if ($sLogo = of_get_option('site-logo')):
+	// get the logo dimensions
+	$size = getimagesize($sLogo);
+?>
+#branding h2 a {
+	background-image : url('<?php echo $sLogo; ?>');
+	width : <?php echo $size[0] ?>px;
+	height : <?php echo $size[1] ?>px;
+}
+<?php
+endif; // end if site-logo
+
+
+
+
+
+
 
 // set up custom content properties
 if ($content_bg = of_get_option('content-background')) :
@@ -210,6 +235,8 @@ if ($footer_bg = of_get_option('footer-background')) :
 ?>
 #footer {
 	<?php
+	if (of_get_option('footer-custom-background')) :
+	
 	if ($footer_bg['color']) { ?>
 	background-color : <?php echo $footer_bg['color']; ?>;
 	<?php
@@ -234,6 +261,11 @@ if ($footer_bg = of_get_option('footer-background')) :
 	<?php
 	}
 	}
+	endif; // end footer-custom-background
+	
+	if (of_get_option('footer-custom-text')) :
+		# code...
+	endif; // end if footer-custom-text
 	?>
 }
 <?php

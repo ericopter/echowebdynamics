@@ -30,12 +30,12 @@ function optionsframework_options() {
 	// If using image radio buttons, define a directory path
 	$imagepath =  get_template_directory_uri() . '/images/options/';
 	
-	$Opt = array(
+	$Opts = array(
 		'global' => array(
 			'color-scheme' => array(
 				'blue-grey' => 'Blue/Grey (Default)',
 				'black-red' => 'Black/Red',
-				// 'dev' 		=> 'Under Development',
+				'dev' 		=> 'Under Development',
 			),
 			'site-width' => array(
 				'960' 		=> '960px',
@@ -105,10 +105,15 @@ function optionsframework_options() {
 			'site-layout' 		=> 'full',
 			'sidebar-position' 	=> 'right',
 			'frame-shadow'		=> '1',
+			'frame-shadow-color'=> '#999999',
+			'frame-shadow-size'	=> '4',
 			'frame-border'		=> '#cccccc',
-			'global-custom'	=> '0'
+			'global-custom'		=> '0'
 		),
-		
+		'header' => array(
+			'custom-background'	=> '0',
+			'custom-text'		=> '0'
+		),
 		'footer-copy' 		=> '<a href="http://www.echowebdynamics.com">Theme By EchoWebDynamics.com</a>',
 		'typo-general' => array(
 			'size' => '16px',
@@ -135,7 +140,7 @@ function optionsframework_options() {
 			'theme' => 'clean'
 		)
 	);
-	
+/////////////////////////////////////////////////////////////////////////////////////////////	
 	$options = array();
 	
 /*
@@ -174,7 +179,7 @@ function optionsframework_options() {
 		'desc'	=> __('Pick your sites default color Scheme', 'echotheme'),
 		'type' 	=> 'radio',
 		'id' 	=> 'color-scheme',
-		'options' => $Opt['global']['color-scheme'],
+		'options' => $Opts['global']['color-scheme'],
 		'std' 	=> $Std['global']['color-scheme']
 		
 	);
@@ -184,7 +189,7 @@ function optionsframework_options() {
 		'desc'	=> __('Choose the site content width area for your site', 'echotheme'),
 		'type' 	=> 'radio',
 		'id' 	=> 'site-width',
-		'options' => $Opt['global']['site-width'],
+		'options' => $Opts['global']['site-width'],
 		'std'	=> $Std['global']['site-width'],
 		
 	);
@@ -194,7 +199,7 @@ function optionsframework_options() {
 		'desc'	=> __('Choose which side your sites sidebar will appear on', 'echotheme'),
 		'type' 	=> 'images',
 		'id' 	=> 'sidebar-position',
-		'options' => $Opt['global']['sidebar-position'],
+		'options' => $Opts['global']['sidebar-position'],
 		'std'	=> $Std['global']['sidebar-position'],
 	);
 	
@@ -203,7 +208,7 @@ function optionsframework_options() {
 		'desc'	=> __('Choose between full width layout or a framed/boxed layout', 'echotheme'),
 		'type' 	=> 'images',
 		'id' 	=> 'site-layout',
-		'options' => $Opt['global']['site-layout'],
+		'options' => $Opts['global']['site-layout'],
 		'std'	=> $Std['global']['site-layout'],
 		
 	);
@@ -214,6 +219,23 @@ function optionsframework_options() {
 		'type' 	=> 'checkbox',
 		'id' 	=> 'frame-shadow',
 		'std'	=> $Std['global']['frame-shadow'],
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Box Shadow Color', 'echotheme'),
+		'desc'	=> __('Enter the box shadow color', 'echotheme'),
+		'type' 	=> 'color',
+		'id' 	=> 'frame-shadow-color',
+		'std'	=> $Std['general']['frame-shadow-color'],
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Box Shadow Size', 'echotheme'),
+		'desc'	=> __('Enter the size in pixels of the shadow spread', 'echotheme'),
+		'type' 	=> 'text',
+		'id' 	=> 'frame-shadow-size',
+		'std'	=> $Std['general']['frame-shadow-size'],
+		'class'	=> 'mini'
 	);
 	
 	$options[] = array(
@@ -228,7 +250,7 @@ function optionsframework_options() {
 		'name' 	=> __('Override Theme Body/Wrapper Background?', 'echotheme'),
 		'desc'	=> __('Check this box to override the selected themes body and content wrapper backgrounds', 'echotheme'),
 		'type' 	=> 'checkbox',
-		'id' 	=> 'global-custom-backgrounds',
+		'id' 	=> 'global-custom-background',
 		'std'	=> $Std['global']['global-custom'],
 	);
 	
@@ -259,8 +281,8 @@ function optionsframework_options() {
 		'desc'	=> __('Set the global Heading characteristics for the site', 'echotheme'),
 		'type' 	=> 'typography',
 		'id' 	=> 'global-text-headings',
-		'std'	=> $defaults['typo-general-links'],
-		'options' => $defaults['typo-general-links']
+		// 'std'	=> $defaults['typo-general-links'],
+		// 'options' => $defaults['typo-general-links']
 	);
 	
 	$options[] = array(
@@ -268,8 +290,8 @@ function optionsframework_options() {
 		'desc'	=> __('Set your sites global font characteristics', 'echotheme'),
 		'type' 	=> 'typography',
 		'id' 	=> 'global-text',
-		'std'	=> $defaults['typo-general'],
-		'options' => $defaults['typo-general']
+		// 'std'	=> $defaults['typo-general'],
+		// 'options' => $defaults['typo-general']
 	);
 	
 	$options[] = array(
@@ -277,8 +299,8 @@ function optionsframework_options() {
 		'desc'	=> __('Set the global link characteristics for the site', 'echotheme'),
 		'type' 	=> 'typography',
 		'id' 	=> 'global-text-links',
-		'std'	=> $defaults['typo-general-links'],
-		'options' => $defaults['typo-general-links']
+		// 'std'	=> $defaults['typo-general-links'],
+		// 'options' => $defaults['typo-general-links']
 	);
 	
 	$options[] = array(
@@ -286,8 +308,8 @@ function optionsframework_options() {
 		'desc'	=> __('Set the global link hover characteristics for the site', 'echotheme'),
 		'type' 	=> 'typography',
 		'id' 	=> 'global-text-links-hover',
-		'std'	=> $defaults['typo-general-links'],
-		'options' => $defaults['typo-general-links']
+		// 'std'	=> $defaults['typo-general-links'],
+		// 'options' => $defaults['typo-general-links']
 	);
 	
 	
@@ -312,6 +334,14 @@ function optionsframework_options() {
 	);
 	
 	$options[] = array(
+		'name' 	=> __('Modify Theme Header Background', 'echotheme'),
+		'desc'	=> __('Check this box to customize the Headers background properties', 'echotheme'),
+		'type' 	=> 'checkbox',
+		'id' 	=> 'header-custom-background',
+		'std'	=> $Std['header']['custom-background'],
+	);
+	
+	$options[] = array(
 		'name' 	=> __('Header Background', 'echotheme'),
 		'desc'	=> __('Site Header Background', 'echotheme'),
 		'type' 	=> 'background',
@@ -319,21 +349,27 @@ function optionsframework_options() {
 	);
 	
 	$options[] = array(
+		'name' 	=> __('Modify Theme Header Links', 'echotheme'),
+		'desc'	=> __('Check this box to customize the Headers background properties', 'echotheme'),
+		'type' 	=> 'checkbox',
+		'id' 	=> 'header-custom-text',
+		'std'	=> $Std['header']['custom-text'],
+	);
+	
+	$options[] = array(
 		'name' 	=> __('Header Links', 'echotheme'),
 		'desc'	=> __('Set the global link characteristics for the site', 'echotheme'),
 		'type' 	=> 'typography',
-		'id' 	=> 'header-type-links',
-		'std'	=> $defaults['typo-general-links'],
-		'options' => $defaults['typo-general-links']
+		'id' 	=> 'header-text-links',
+		// 'std'	=> $defaults['typo-general-links'],
 	);
 	
 	$options[] = array(
 		'name' 	=> __('Header Links (Hover)', 'echotheme'),
 		'desc'	=> __('Set the global link characteristics for the site', 'echotheme'),
 		'type' 	=> 'typography',
-		'id' 	=> 'header-type-links',
-		'std'	=> $defaults['typo-general-links'],
-		'options' => $defaults['typo-general-links']
+		'id' 	=> 'header-text-links-hover',
+		// 'std'	=> $defaults['typo-general-links'],
 	);
 	
 	
@@ -412,8 +448,8 @@ function optionsframework_options() {
 		'desc'	=> __('Set the Footer link characteristics', 'echotheme'),
 		'type' 	=> 'typography',
 		'id' 	=> 'footer-text-links',
-		'std'	=> $defaults['typo-general-links'],
-		'options' => $defaults['typo-general-links']
+		// 'std'	=> $defaults['typo-general-links'],
+		// 'options' => $defaults['typo-general-links']
 	);
 	
 	$options[] = array(
@@ -421,8 +457,8 @@ function optionsframework_options() {
 		'desc'	=> __('Set the Footer link hover characteristics', 'echotheme'),
 		'type' 	=> 'typography',
 		'id' 	=> 'footer-text-links-hover',
-		'std'	=> $defaults['typo-general-links'],
-		'options' => $defaults['typo-general-links']
+		// 'std'	=> $defaults['typo-general-links'],
+		// 'options' => $defaults['typo-general-links']
 	);
 	
 	$options[] = array(
@@ -430,7 +466,7 @@ function optionsframework_options() {
 		'desc'	=> __('Add your "Footer" text here', 'echotheme'),
 		'type' 	=> 'textarea',
 		'id' 	=> 'footer-copy',
-		'std'	=> $defaults['footer-copy'],
+		'std'	=> $Std['footer-copy'],
 	);
 	
 	
@@ -449,7 +485,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check button to enable homepage slideshow', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'slideshow-display',
-		'std'	=> $defaults['slideshow']['display']
+		'std'	=> $Std['slideshow']['display']
 	);
 	
 	$options[] = array(
@@ -457,8 +493,8 @@ function optionsframework_options() {
 		'desc'	=> __('Do you want the slideshow full screen width or to match the content width?', 'echotheme'),
 		'type' 	=> 'radio',
 		'id' 	=> 'home-slideshow-width',
-		'std'	=> 'framed',
-		'options' => $defaults['slideshow']['home-width']
+		'std'	=> $Std['slideshow']['home-width'],
+		'options' => $Opts['slideshow']['home-width']
 	);
 	
 	$options[] = array(
@@ -466,7 +502,7 @@ function optionsframework_options() {
 		'desc'	=> __('Choose between a fading or sliding transition', 'echotheme'),
 		'type' 	=> 'select',
 		'id' 	=> 'slideshow-effect',
-		'std'	=> $defaults['slideshow']['effect'],
+		'std'	=> $Std['slideshow']['effect'],
 		'class'	=> 'mini',
 		'options' => array(
 			'fading' => 'Fading',
@@ -479,7 +515,7 @@ function optionsframework_options() {
 		'desc'	=> __('Direction of sliding movement (for "Sliding" type transition only)', 'echotheme'),
 		'type' 	=> 'select',
 		'id' 	=> 'slideshow-direction',
-		'std'	=> $defaults['slideshow']['direction'],
+		'std'	=> $Std['slideshow']['direction'],
 		'class'	=> 'mini',
 		'options' => array(
 			'horizontal' => 'Horizontal',
@@ -492,7 +528,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check this box to reverse the default direction of the slide movement', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'slideshow-direction-reverse',
-		'std'	=> $defaults['slideshow']['direction-reverse']
+		'std'	=> $Std['slideshow']['direction-reverse']
 	);
 	
 	$options[] = array(
@@ -500,7 +536,7 @@ function optionsframework_options() {
 		'desc'	=> __('Delay in seconds to change slides', 'echotheme'),
 		'type' 	=> 'select',
 		'id' 	=> 'slideshow-delay',
-		'std'	=> $defaults['slideshow']['delay'],
+		'std'	=> $Std['slideshow']['delay'],
 		'class'	=> 'mini',
 		'options' => array(
 			1 => '1 Second',
@@ -521,7 +557,7 @@ function optionsframework_options() {
 		'desc'	=> __('Time for animation transition effect to occur', 'echotheme'),
 		'type' 	=> 'select',
 		'id' 	=> 'slideshow-speed',
-		'std'	=> $defaults['slideshow']['speed'],
+		'std'	=> $Std['slideshow']['speed'],
 		'class'	=> 'mini',
 		'options' => array(
 			1 => '.1 Second',
@@ -547,7 +583,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check to show navigation links for each slide in the show', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'slideshow-pagination',
-		'std'	=> $defaults['slideshow']['pagination'],
+		'std'	=> $Std['slideshow']['pagination'],
 	);
 	
 	$options[] = array(
@@ -555,7 +591,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check to show prev/next buttons for the slideshow', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'slideshow-navigation',
-		'std'	=> $defaults['slideshow']['navigation'],
+		'std'	=> $Std['slideshow']['navigation'],
 	);
 	
 	$options[] = array(
@@ -563,7 +599,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check to allow navigating prev/next slides with keyboard arrow keys', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'slideshow-keyboard',
-		'std'	=> $defaults['slideshow']['keyboard'],
+		'std'	=> $Std['slideshow']['keyboard'],
 	);
 	
 	
@@ -609,7 +645,7 @@ function optionsframework_options() {
 		'desc'	=> __('Choose reCAPTCHA them', 'echotheme'),
 		'type' 	=> 'select',
 		'id' 	=> 'recaptcha-theme',
-		'std'	=> $defaults['recaptcha']['theme'],
+		'std'	=> $Std['recaptcha']['theme'],
 		'class'	=> 'mini',
 		'options' => array(
 			'white' => 'White', 
@@ -669,33 +705,53 @@ jQuery(document).ready(function($) {
 	
 	// framed layout box default display
 	if ($('#section-site-layout .of-radio-img-radio:checked').val() == 'framed') {
-		$('#section-frame-shadow').show();
-		$('#section-frame-border').show();
+		$('[id^=section-frame]').show();
 	} else {
-		$('#section-frame-shadow').hide();
-		$('#section-frame-border').hide();
+		$('[id^=section-frame]').hide();
 	}
 	
-	// event responder from framed click, need both of following due to complex image elements
+	// event responder from layout_framed click, need both of following due to complex image elements
 	$('#site-layout_framed').nextAll('img').first().click(function() {
-		$('#section-frame-shadow').slideToggle(400);
-		$('#section-frame-border').slideDown(400);
+		$('[id^=section-frame]').slideDown(400);
+		
+		// show hide frame shadow options
+		if ($('#frame-shadow').is(':checked')) {
+			$('#section-frame-shadow-color').show();
+			$('#section-frame-shadow-size').show();
+		} else {
+			$('#section-frame-shadow-color').hide();
+			$('#section-frame-shadow-size').hide();
+		}
 	})
-	
+	// event responder from layout_full click, need both of following due to complex image elements
 	$('#site-layout_full').nextAll('img').first().click(function() {
-		$('#section-frame-shadow').slideUp(400);
-		$('#section-frame-border').slideUp(400);
+		$('[id^=section-frame]').slideUp(400);
+	});
+	
+	
+	// show hide frame shadow options
+	if ($('#frame-shadow').is(':checked')) {
+		$('#section-frame-shadow-color').show();
+		$('#section-frame-shadow-size').show();
+	} else {
+		$('#section-frame-shadow-color').hide();
+		$('#section-frame-shadow-size').hide();
+	}
+	// respond to frame shadow click
+	$('#frame-shadow').click(function() {
+		$('#section-frame-shadow-color').slideToggle();
+		$('#section-frame-shadow-size').slideToggle();
 	});
 	
 	
 	// show hide custom background options
-	if ($('#global-custom-backgrounds').is(':checked')) {
+	if ($('#global-custom-background').is(':checked')) {
 		$('#section-body-background, #section-wrapper-background').show();
 	} else {
 		$('#section-body-background, #section-wrapper-background').hide();
 	}
 	
-	$('#global-custom-backgrounds').click(function() {
+	$('#global-custom-background').click(function() {
 		$('#section-body-background').slideToggle();
 		$('#section-wrapper-background').slideToggle();
 	});
@@ -720,6 +776,34 @@ jQuery(document).ready(function($) {
 		$('#section-global-text-links-hover').slideToggle();
 	});
 	
+	/*
+		Header Options
+	*/
+	
+	// show hide custom background options
+	if ($('#header-custom-background').is(':checked')) {
+		$('#section-header-background').show();
+	} else {
+		$('#section-header-background').hide();
+	}
+	
+	$('#header-custom-background').click(function() {
+		$('#section-header-background').slideToggle();
+	});
+	
+	// show hide custom text options
+	if ($('#header-custom-text').is(':checked')) {
+		$('#section-header-text-links').show();
+		$('#section-header-text-links-hover').show();
+	} else {
+		$('#section-header-text-links').hide();
+		$('#section-header-text-links-hover').hide();
+	}
+	
+	$('#header-custom-text').click(function() {
+		$('#section-header-text-links').slideToggle();
+		$('#section-header-text-links-hover').slideToggle();
+	});
 	
 	/*
 		Slideshow Options
