@@ -45,6 +45,12 @@ $width = of_get_option('site-width')  . 'px';
 	box-shadow : 0 0 4px #999;
 	<?php
 	endif; //end frame shadow
+	
+	
+	if ($border= of_get_option('frame-border')) : ?>
+	border : 1px solid <?php echo $border; ?>;
+	<?php
+	endif; //end frame shadow
 	?>
 }
 <?php

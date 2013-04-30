@@ -30,23 +30,27 @@ function optionsframework_options() {
 	// If using image radio buttons, define a directory path
 	$imagepath =  get_template_directory_uri() . '/images/options/';
 	
-	$defaultDev = array(
+	$Opt = array(
 		'global' => array(
 			'color-scheme' => array(
-				
+				'blue-grey' => 'Blue/Grey (Default)',
+				'black-red' => 'Black/Red',
+				// 'dev' 		=> 'Under Development',
 			),
 			'site-width' => array(
-				
+				'960' 		=> '960px',
+				'1120' 		=> '1120px',
 			),
 			'site-layout' => array(
-				
+				'full' 		=> $imagepath . 'option-layout-full.png',
+				'framed' 	=> $imagepath . 'option-layout-framed.png',
 			),
 			'sidebar-position' => array(
-				
+				'right' 	=> $imagepath . '2cr.png',
+				'left' 		=> $imagepath . '2cl.png',
 			),
-			
 		),
-		'global-type' => array(
+		'global-color-type' => array(
 			'general' => array(
 				
 			),
@@ -67,45 +71,45 @@ function optionsframework_options() {
 			
 		),
 		'footer' => array(
-			
+			'text' => '<a href="http://www.echowebdynamics.com">Theme By EchoWebDynamics.com</a>'
 		),
 		'slideshow' => array(
-			
+			'display' => 1,
+			'home-width' => array(
+				'full' => 'Full Width',
+				'framed' => 'Framed'
+			),
+			'delay' => 6,
+			'speed' => 6,
+			'effect' => 'fading',
+			'direction' => 'horizontal',
+			'direction-reverse' => 0,
+			'navigation' => 1,
+			'pagination' => 1,
+			'keyboard' => 1
 		),
 		'contact' => array(
-			
+			'recaptcha' => array(
+				'theme' => 'clean'
+			)
 		),
 		'meta-data' => array(
 			
 		)
 	);
 	
-	$defaults = array(
-		'color-scheme' => array(
-			'default' => 'Blue/Grey (Default)',
-			'black-red' => 'Black/Red',
-			'dev' => 'Under Development'
+	$Std = array(
+		'global' => array(
+			'color-scheme' 		=> 'blue-grey',
+			'site-width' 		=> '960',
+			'site-layout' 		=> 'full',
+			'sidebar-position' 	=> 'right',
+			'frame-shadow'		=> '1',
+			'frame-border'		=> '#cccccc',
+			'global-custom'	=> '0'
 		),
-		'site-width' => array(
-			'960' => '960px',
-			'1120' => '1120px'
-		),
-		'site-layout' => array(
-			'full' => $imagepath . 'option-layout-full.png',
-			'framed' => $imagepath . 'option-layout-framed.png'
-		),
-		'sidebar-position' => array(
-			'right' => $imagepath . '2cr.png',
-			'left' => $imagepath . '2cl.png'
-		),
-		'footer-copy' => '<a href="http://www.echowebdynamics.com">Theme By EchoWebDynamics.com</a>',
-		'body-background' => array(
-			// 'color' => '',
-			// 'image' => $imagepath . 'content-bg.png',
-			// 'repeat' => 'repeat',
-			// 'position' => 'top center',
-			// 'attachment'=>'scroll'
-		),
+		
+		'footer-copy' 		=> '<a href="http://www.echowebdynamics.com">Theme By EchoWebDynamics.com</a>',
 		'typo-general' => array(
 			'size' => '16px',
 			'face' => 'helvetica',
@@ -117,10 +121,7 @@ function optionsframework_options() {
 		),
 		'slideshow' => array(
 			'display' => 1,
-			'home-width' => array(
-				'full' => 'Full Width',
-				'framed' => 'Framed'
-			),
+			'home-width' => 'full',
 			'delay' => 6,
 			'speed' => 6,
 			'effect' => 'fading',
@@ -145,15 +146,16 @@ function optionsframework_options() {
 		'desc'	=> __('', 'echotheme'),
 		'type' 	=> '',
 		'id' 	=> '',
+		'options' => array(),
 		'std'	=> '',
-		'class'	=> '',
-		'options' => array()
+		'class'	=> ''
 	);
 */
 	
-	/*
-		Global
-	*/
+	/******************************************************
+	 Global Options
+	******************************************************/
+	
 	$options[] = array(
 		'name' => __('Global Settings', 'echotheme'),
 		'type' => 'heading'
@@ -172,15 +174,9 @@ function optionsframework_options() {
 		'desc'	=> __('Pick your sites default color Scheme', 'echotheme'),
 		'type' 	=> 'radio',
 		'id' 	=> 'color-scheme',
-		'std' 	=> 'default',
-		'options' => $defaults['color-scheme']
-	);
-	
-	$options[] = array(
-		'name' 	=> __('Site Logo', 'echotheme'),
-		'desc'	=> __('Upload a custom logo for your site', 'echotheme'),
-		'type' 	=> 'upload',
-		'id' 	=> 'site-logo'
+		'options' => $Opt['global']['color-scheme'],
+		'std' 	=> $Std['global']['color-scheme']
+		
 	);
 	
 	$options[] = array(
@@ -188,25 +184,9 @@ function optionsframework_options() {
 		'desc'	=> __('Choose the site content width area for your site', 'echotheme'),
 		'type' 	=> 'radio',
 		'id' 	=> 'site-width',
-		'std'	=> '960',
-		'options' => $defaults['site-width']
-	);
-	
-	$options[] = array(
-		'name' 	=> __('Site Layout Display', 'echotheme'),
-		'desc'	=> __('Choose between full width layout or a framed/boxed layout', 'echotheme'),
-		'type' 	=> 'images',
-		'id' 	=> 'site-layout',
-		'std'	=> 'full',
-		'options' => $defaults['site-layout']
-	);
-	
-	$options[] = array(
-		'name' 	=> __('Add Box Shadow to Framed Layout', 'echotheme'),
-		'desc'	=> __('Click this box if you would like to add a CSS box shadow to the frame/box layout', 'echotheme'),
-		'type' 	=> 'checkbox',
-		'id' 	=> 'frame-shadow',
-		'std'	=> '1',
+		'options' => $Opt['global']['site-width'],
+		'std'	=> $Std['global']['site-width'],
+		
 	);
 	
 	$options[] = array(
@@ -214,9 +194,42 @@ function optionsframework_options() {
 		'desc'	=> __('Choose which side your sites sidebar will appear on', 'echotheme'),
 		'type' 	=> 'images',
 		'id' 	=> 'sidebar-position',
-		'std'	=> 'right',
-		// 'class'	=> '',
-		'options' => $defaults['sidebar-position']
+		'options' => $Opt['global']['sidebar-position'],
+		'std'	=> $Std['global']['sidebar-position'],
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Site Layout Display', 'echotheme'),
+		'desc'	=> __('Choose between full width layout or a framed/boxed layout', 'echotheme'),
+		'type' 	=> 'images',
+		'id' 	=> 'site-layout',
+		'options' => $Opt['global']['site-layout'],
+		'std'	=> $Std['global']['site-layout'],
+		
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Add Box Shadow to Framed Layout', 'echotheme'),
+		'desc'	=> __('Check this box if you would like to add a CSS box shadow to the frame/box layout', 'echotheme'),
+		'type' 	=> 'checkbox',
+		'id' 	=> 'frame-shadow',
+		'std'	=> $Std['global']['frame-shadow'],
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Add border to framed layout', 'echotheme'),
+		'desc'	=> __('Select the color of the border you want surrounding framed content', 'echotheme'),
+		'type' 	=> 'color',
+		'id' 	=> 'frame-border',
+		'std'	=> $Std['global']['frame-border']
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Override Theme Body/Wrapper Background?', 'echotheme'),
+		'desc'	=> __('Check this box to override the selected themes body and content wrapper backgrounds', 'echotheme'),
+		'type' 	=> 'checkbox',
+		'id' 	=> 'global-custom-backgrounds',
+		'std'	=> $Std['global']['global-custom'],
 	);
 	
 	$options[] = array(
@@ -233,21 +246,28 @@ function optionsframework_options() {
 		'id' 	=> 'wrapper-background',
 	);
 	
-	
-	
-	/*
-		Global Typography
-	*/
 	$options[] = array(
-		'name' => __('Global Typography', 'options_framework_theme'),
-		'type' => 'heading'
+		'name' 	=> __('Override Theme Global Text Properties?', 'echotheme'),
+		'desc'	=> __('Check this box to override the selected themes global text properties', 'echotheme'),
+		'type' 	=> 'checkbox',
+		'id' 	=> 'global-custom-text',
+		'std'	=> $Std['global']['global-custom'],
 	);
 	
 	$options[] = array(
-		'name' 	=> __('Global Typography', 'echotheme'),
+		'name' 	=> __('Global Headings', 'echotheme'),
+		'desc'	=> __('Set the global Heading characteristics for the site', 'echotheme'),
+		'type' 	=> 'typography',
+		'id' 	=> 'global-text-headings',
+		'std'	=> $defaults['typo-general-links'],
+		'options' => $defaults['typo-general-links']
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Global Text', 'echotheme'),
 		'desc'	=> __('Set your sites global font characteristics', 'echotheme'),
 		'type' 	=> 'typography',
-		'id' 	=> 'global-type',
+		'id' 	=> 'global-text',
 		'std'	=> $defaults['typo-general'],
 		'options' => $defaults['typo-general']
 	);
@@ -256,28 +276,39 @@ function optionsframework_options() {
 		'name' 	=> __('Global Links', 'echotheme'),
 		'desc'	=> __('Set the global link characteristics for the site', 'echotheme'),
 		'type' 	=> 'typography',
-		'id' 	=> 'global-type-links',
+		'id' 	=> 'global-text-links',
 		'std'	=> $defaults['typo-general-links'],
 		'options' => $defaults['typo-general-links']
 	);
 	
 	$options[] = array(
-		'name' 	=> __('Global Headings', 'echotheme'),
-		'desc'	=> __('Set the global Heading characteristics for the site', 'echotheme'),
+		'name' 	=> __('Global Links (hover)', 'echotheme'),
+		'desc'	=> __('Set the global link hover characteristics for the site', 'echotheme'),
 		'type' 	=> 'typography',
-		'id' 	=> 'global-type-headings',
+		'id' 	=> 'global-text-links-hover',
 		'std'	=> $defaults['typo-general-links'],
 		'options' => $defaults['typo-general-links']
 	);
 	
 	
 	
-	/*
-		Header
-	*/
+	
+	
+	
+	/******************************************************
+	 Header Options
+	******************************************************/
+	
 	$options[] = array(
 		'name' => __('Header', 'echotheme'),
 		'type' => 'heading'
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Site Logo', 'echotheme'),
+		'desc'	=> __('Upload a custom logo for your site', 'echotheme'),
+		'type' 	=> 'upload',
+		'id' 	=> 'site-logo'
 	);
 	
 	$options[] = array(
@@ -288,16 +319,16 @@ function optionsframework_options() {
 	);
 	
 	$options[] = array(
-		'name' 	=> __('Header Typography', 'echotheme'),
-		'desc'	=> __('Set your sites global font characteristics', 'echotheme'),
+		'name' 	=> __('Header Links', 'echotheme'),
+		'desc'	=> __('Set the global link characteristics for the site', 'echotheme'),
 		'type' 	=> 'typography',
-		'id' 	=> 'header-type',
-		'std'	=> $defaults['typo-general'],
-		'options' => $defaults['typo-general']
+		'id' 	=> 'header-type-links',
+		'std'	=> $defaults['typo-general-links'],
+		'options' => $defaults['typo-general-links']
 	);
 	
 	$options[] = array(
-		'name' 	=> __('Global Links', 'echotheme'),
+		'name' 	=> __('Header Links (Hover)', 'echotheme'),
 		'desc'	=> __('Set the global link characteristics for the site', 'echotheme'),
 		'type' 	=> 'typography',
 		'id' 	=> 'header-type-links',
@@ -307,9 +338,10 @@ function optionsframework_options() {
 	
 	
 	
-	/*
-		Navigation
-	*/
+	/******************************************************
+	 Navigation Options
+	******************************************************/
+	
 	$options[] = array(
 		'name' => __('Navigation', 'echotheme'),
 		'type' => 'heading'
@@ -324,9 +356,10 @@ function optionsframework_options() {
 	
 	
 	
-	/*
-		Content
-	*/
+	/******************************************************
+	 Content Options
+	******************************************************/
+	
 	$options[] = array(
 		'name' => __('Content', 'echotheme'),
 		'type' => 'heading'
@@ -341,9 +374,10 @@ function optionsframework_options() {
 	
 	
 	
-	/*
-		Footer
-	*/
+	/******************************************************
+	 Footer Options
+	******************************************************/
+	
 	$options[] = array(
 		'name' => __('Footer', 'echotheme'),
 		'type' => 'heading'
@@ -357,6 +391,41 @@ function optionsframework_options() {
 	);
 	
 	$options[] = array(
+		'name' 	=> __('Custom Footer Text Settings', 'echotheme'),
+		'desc'	=> __('Check the box to override the theme footer text settings', 'echotheme'),
+		'type' 	=> 'checkbox',
+		'id' 	=> 'footer-custom-text',
+		'std'	=> '0'
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Footer Text', 'echotheme'),
+		'desc'	=> __('Set the footer text characteristics', 'echotheme'),
+		'type' 	=> 'typography',
+		'id' 	=> 'footer-text-general',
+		// 'std'	=> $defaults['typo-general-links'],
+		// 'options' => $defaults['typo-general-links']
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Footer Links', 'echotheme'),
+		'desc'	=> __('Set the Footer link characteristics', 'echotheme'),
+		'type' 	=> 'typography',
+		'id' 	=> 'footer-text-links',
+		'std'	=> $defaults['typo-general-links'],
+		'options' => $defaults['typo-general-links']
+	);
+	
+	$options[] = array(
+		'name' 	=> __('Footer Links (Hover)', 'echotheme'),
+		'desc'	=> __('Set the Footer link hover characteristics', 'echotheme'),
+		'type' 	=> 'typography',
+		'id' 	=> 'footer-text-links-hover',
+		'std'	=> $defaults['typo-general-links'],
+		'options' => $defaults['typo-general-links']
+	);
+	
+	$options[] = array(
 		'name' 	=> __('Footer Copy', 'echotheme'),
 		'desc'	=> __('Add your "Footer" text here', 'echotheme'),
 		'type' 	=> 'textarea',
@@ -366,9 +435,10 @@ function optionsframework_options() {
 	
 	
 	
-	/*
-		Slideshow
-	*/
+	/******************************************************
+	 Slideshow Options
+	******************************************************/
+	
 	$options[] = array(
 		'name' => __('Slideshow', 'options_framework_theme'),
 		'type' => 'heading'
@@ -498,9 +568,9 @@ function optionsframework_options() {
 	
 	
 	
-	/*
-		Contact Page
-	*/
+	/******************************************************
+	 Contact Page Options
+	******************************************************/
 	$options[] = array(
 		'name'	=> __('Contact', 'echotheme'),
 		'type'	=> 'heading'
@@ -549,9 +619,9 @@ function optionsframework_options() {
 		)
 	);
 	
-	/*
-		Meta Data
-	*/
+	/******************************************************
+	 Meta Data Options
+	******************************************************/
 	$options[] = array(
 		'name'	=> __('Meta Data', 'echotheme'),
 		'type'	=> 'heading'
@@ -593,7 +663,84 @@ function optionsframework_custom_scripts() { ?>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
 
-	// contact option hiding
+	/*
+		Global Options
+	*/
+	
+	// framed layout box default display
+	if ($('#section-site-layout .of-radio-img-radio:checked').val() == 'framed') {
+		$('#section-frame-shadow').show();
+		$('#section-frame-border').show();
+	} else {
+		$('#section-frame-shadow').hide();
+		$('#section-frame-border').hide();
+	}
+	
+	// event responder from framed click, need both of following due to complex image elements
+	$('#site-layout_framed').nextAll('img').first().click(function() {
+		$('#section-frame-shadow').slideToggle(400);
+		$('#section-frame-border').slideDown(400);
+	})
+	
+	$('#site-layout_full').nextAll('img').first().click(function() {
+		$('#section-frame-shadow').slideUp(400);
+		$('#section-frame-border').slideUp(400);
+	});
+	
+	
+	// show hide custom background options
+	if ($('#global-custom-backgrounds').is(':checked')) {
+		$('#section-body-background, #section-wrapper-background').show();
+	} else {
+		$('#section-body-background, #section-wrapper-background').hide();
+	}
+	
+	$('#global-custom-backgrounds').click(function() {
+		$('#section-body-background').slideToggle();
+		$('#section-wrapper-background').slideToggle();
+	});
+	
+	// show hide custom text options
+	if ($('#global-custom-text').is(':checked')) {
+		$('#section-global-text-headings').show();
+		$('#section-global-text').show();
+		$('#section-global-text-links').show();
+		$('#section-global-text-links-hover').show();
+	} else {
+		$('#section-global-text-headings').hide();
+		$('#section-global-text').hide();
+		$('#section-global-text-links').hide();
+		$('#section-global-text-links-hover').hide();
+	}
+	
+	$('#global-custom-text').click(function() {
+		$('#section-global-text-headings').slideToggle();
+		$('#section-global-text').slideToggle();
+		$('#section-global-text-links').slideToggle();
+		$('#section-global-text-links-hover').slideToggle();
+	});
+	
+	
+	/*
+		Slideshow Options
+	*/
+	if ($('#slideshow-effect').val() == 'fading') {
+		$('#section-slideshow-direction').hide();
+		$('#section-slideshow-direction-reverse').hide();
+	} else {
+		$('#section-slideshow-navigation').hide();
+		
+	}
+	
+	$('#slideshow-effect').change(function() {
+		$('#section-slideshow-direction').slideToggle();
+		$('#section-slideshow-direction-reverse').slideToggle();
+		$('#section-slideshow-navigation').slideToggle();
+	});
+	
+	/*
+		Recaptcha Options
+	*/
 	if ($('#use-recaptcha:checked').val() !== undefined) {
 		$('#section-recaptcha-public-key').show();
 		$('#section-recaptcha-private-key').show();
@@ -610,35 +757,17 @@ jQuery(document).ready(function($) {
 		$('#section-recaptcha-theme').slideToggle(400);
 	});
 	
-	// Slideshow option hiding
-	if ($('#slideshow-effect').val() == 'fading') {
-		$('#section-slideshow-direction').hide();
-		$('#section-slideshow-direction-reverse').hide();
+	
+	// Footer Text
+	if ($('#footer-custom-text').is(':checked')) {
+		$('[id*="section-footer-text"]').show();
 	} else {
-		$('#section-slideshow-navigation').hide();
-		
+		$('[id*="section-footer-text"]').hide();
 	}
 	
-	$('#slideshow-effect').change(function() {
-		$('#section-slideshow-direction').slideToggle();
-		$('#section-slideshow-direction-reverse').slideToggle();
-		$('#section-slideshow-navigation').slideToggle();
-	});
-	
-	// framed layout box shadow option selection
-	if ($('.of-radio-img-radio:checked').val() == 'framed') {
-		$('#section-frame-shadow').show();
-	} else {
-		$('#section-frame-shadow').hide();
-	}
-	
-	$('#site-layout_framed').nextAll('img').first().click(function() {
-		$('#section-frame-shadow').slideDown(400);
+	$('#footer-custom-text').click(function() {
+		$('[id*="section-footer-text"]').slideToggle();
 	})
-	
-	$('#site-layout_full').nextAll('img').first().click(function() {
-		$('#section-frame-shadow').slideUp(400);
-	});
 	
 });
 </script>
