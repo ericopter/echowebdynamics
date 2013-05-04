@@ -30,12 +30,12 @@ function optionsframework_options() {
 	// If using image radio buttons, define a directory path
 	$imagepath =  get_template_directory_uri() . '/images/options/';
 	
-	$Opts = array(
+	$optionsArr = array(
 		'global' => array(
 			'color-scheme' => array(
 				'blue-grey' => 'Blue/Grey (Default)',
 				'black-red' => 'Black/Red',
-				'dev' 		=> 'Under Development',
+				'dev' 		=> 'Development',
 			),
 			'site-width' => array(
 				'960' 		=> '960px',
@@ -98,7 +98,7 @@ function optionsframework_options() {
 		)
 	);
 	
-	$Std = array(
+	$defaults = array(
 		'global' => array(
 			'color-scheme' 		=> 'blue-grey',
 			'site-width' 		=> '960',
@@ -126,7 +126,7 @@ function optionsframework_options() {
 		),
 		'slideshow' => array(
 			'display' => 1,
-			'home-width' => 'full',
+			'home-width' => 'framed',
 			'delay' => 6,
 			'speed' => 6,
 			'effect' => 'fading',
@@ -179,8 +179,8 @@ function optionsframework_options() {
 		'desc'	=> __('Pick your sites default color Scheme', 'echotheme'),
 		'type' 	=> 'radio',
 		'id' 	=> 'color-scheme',
-		'options' => $Opts['global']['color-scheme'],
-		'std' 	=> $Std['global']['color-scheme']
+		'options' => $optionsArr['global']['color-scheme'],
+		'std' 	=> $defaults['global']['color-scheme']
 		
 	);
 	
@@ -189,8 +189,8 @@ function optionsframework_options() {
 		'desc'	=> __('Choose the site content width area for your site', 'echotheme'),
 		'type' 	=> 'radio',
 		'id' 	=> 'site-width',
-		'options' => $Opts['global']['site-width'],
-		'std'	=> $Std['global']['site-width'],
+		'options' => $optionsArr['global']['site-width'],
+		'std'	=> $defaults['global']['site-width'],
 		
 	);
 	
@@ -199,8 +199,8 @@ function optionsframework_options() {
 		'desc'	=> __('Choose which side your sites sidebar will appear on', 'echotheme'),
 		'type' 	=> 'images',
 		'id' 	=> 'sidebar-position',
-		'options' => $Opts['global']['sidebar-position'],
-		'std'	=> $Std['global']['sidebar-position'],
+		'options' => $optionsArr['global']['sidebar-position'],
+		'std'	=> $defaults['global']['sidebar-position'],
 	);
 	
 	$options[] = array(
@@ -208,8 +208,8 @@ function optionsframework_options() {
 		'desc'	=> __('Choose between full width layout or a framed/boxed layout', 'echotheme'),
 		'type' 	=> 'images',
 		'id' 	=> 'site-layout',
-		'options' => $Opts['global']['site-layout'],
-		'std'	=> $Std['global']['site-layout'],
+		'options' => $optionsArr['global']['site-layout'],
+		'std'	=> $defaults['global']['site-layout'],
 		
 	);
 	
@@ -218,7 +218,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check this box if you would like to add a CSS box shadow to the frame/box layout', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'frame-shadow',
-		'std'	=> $Std['global']['frame-shadow'],
+		'std'	=> $defaults['global']['frame-shadow'],
 	);
 	
 	$options[] = array(
@@ -226,7 +226,7 @@ function optionsframework_options() {
 		'desc'	=> __('Enter the box shadow color', 'echotheme'),
 		'type' 	=> 'color',
 		'id' 	=> 'frame-shadow-color',
-		'std'	=> $Std['general']['frame-shadow-color'],
+		'std'	=> $defaults['general']['frame-shadow-color'],
 	);
 	
 	$options[] = array(
@@ -234,7 +234,7 @@ function optionsframework_options() {
 		'desc'	=> __('Enter the size in pixels of the shadow spread', 'echotheme'),
 		'type' 	=> 'text',
 		'id' 	=> 'frame-shadow-size',
-		'std'	=> $Std['general']['frame-shadow-size'],
+		'std'	=> $defaults['general']['frame-shadow-size'],
 		'class'	=> 'mini'
 	);
 	
@@ -243,7 +243,7 @@ function optionsframework_options() {
 		'desc'	=> __('Select the color of the border you want surrounding framed content', 'echotheme'),
 		'type' 	=> 'color',
 		'id' 	=> 'frame-border',
-		'std'	=> $Std['global']['frame-border']
+		'std'	=> $defaults['global']['frame-border']
 	);
 	
 	$options[] = array(
@@ -251,7 +251,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check this box to override the selected themes body and content wrapper backgrounds', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'global-custom-background',
-		'std'	=> $Std['global']['global-custom'],
+		'std'	=> $defaults['global']['global-custom'],
 	);
 	
 	$options[] = array(
@@ -273,7 +273,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check this box to override the selected themes global text properties', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'global-custom-text',
-		'std'	=> $Std['global']['global-custom'],
+		'std'	=> $defaults['global']['global-custom'],
 	);
 	
 	$options[] = array(
@@ -338,7 +338,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check this box to customize the Headers background properties', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'header-custom-background',
-		'std'	=> $Std['header']['custom-background'],
+		'std'	=> $defaults['header']['custom-background'],
 	);
 	
 	$options[] = array(
@@ -353,7 +353,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check this box to customize the Headers background properties', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'header-custom-text',
-		'std'	=> $Std['header']['custom-text'],
+		'std'	=> $defaults['header']['custom-text'],
 	);
 	
 	$options[] = array(
@@ -466,7 +466,7 @@ function optionsframework_options() {
 		'desc'	=> __('Add your "Footer" text here', 'echotheme'),
 		'type' 	=> 'textarea',
 		'id' 	=> 'footer-copy',
-		'std'	=> $Std['footer-copy'],
+		'std'	=> $defaults['footer-copy'],
 	);
 	
 	
@@ -485,7 +485,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check button to enable homepage slideshow', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'slideshow-display',
-		'std'	=> $Std['slideshow']['display']
+		'std'	=> $defaults['slideshow']['display']
 	);
 	
 	$options[] = array(
@@ -493,8 +493,8 @@ function optionsframework_options() {
 		'desc'	=> __('Do you want the slideshow full screen width or to match the content width?', 'echotheme'),
 		'type' 	=> 'radio',
 		'id' 	=> 'home-slideshow-width',
-		'std'	=> $Std['slideshow']['home-width'],
-		'options' => $Opts['slideshow']['home-width']
+		'std'	=> $defaults['slideshow']['home-width'],
+		'options' => $optionsArr['slideshow']['home-width']
 	);
 	
 	$options[] = array(
@@ -502,7 +502,7 @@ function optionsframework_options() {
 		'desc'	=> __('Choose between a fading or sliding transition', 'echotheme'),
 		'type' 	=> 'select',
 		'id' 	=> 'slideshow-effect',
-		'std'	=> $Std['slideshow']['effect'],
+		'std'	=> $defaults['slideshow']['effect'],
 		'class'	=> 'mini',
 		'options' => array(
 			'fading' => 'Fading',
@@ -515,7 +515,7 @@ function optionsframework_options() {
 		'desc'	=> __('Direction of sliding movement (for "Sliding" type transition only)', 'echotheme'),
 		'type' 	=> 'select',
 		'id' 	=> 'slideshow-direction',
-		'std'	=> $Std['slideshow']['direction'],
+		'std'	=> $defaults['slideshow']['direction'],
 		'class'	=> 'mini',
 		'options' => array(
 			'horizontal' => 'Horizontal',
@@ -528,7 +528,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check this box to reverse the default direction of the slide movement', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'slideshow-direction-reverse',
-		'std'	=> $Std['slideshow']['direction-reverse']
+		'std'	=> $defaults['slideshow']['direction-reverse']
 	);
 	
 	$options[] = array(
@@ -536,7 +536,7 @@ function optionsframework_options() {
 		'desc'	=> __('Delay in seconds to change slides', 'echotheme'),
 		'type' 	=> 'select',
 		'id' 	=> 'slideshow-delay',
-		'std'	=> $Std['slideshow']['delay'],
+		'std'	=> $defaults['slideshow']['delay'],
 		'class'	=> 'mini',
 		'options' => array(
 			1 => '1 Second',
@@ -557,7 +557,7 @@ function optionsframework_options() {
 		'desc'	=> __('Time for animation transition effect to occur', 'echotheme'),
 		'type' 	=> 'select',
 		'id' 	=> 'slideshow-speed',
-		'std'	=> $Std['slideshow']['speed'],
+		'std'	=> $defaults['slideshow']['speed'],
 		'class'	=> 'mini',
 		'options' => array(
 			1 => '.1 Second',
@@ -583,7 +583,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check to show navigation links for each slide in the show', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'slideshow-pagination',
-		'std'	=> $Std['slideshow']['pagination'],
+		'std'	=> $defaults['slideshow']['pagination'],
 	);
 	
 	$options[] = array(
@@ -591,7 +591,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check to show prev/next buttons for the slideshow', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'slideshow-navigation',
-		'std'	=> $Std['slideshow']['navigation'],
+		'std'	=> $defaults['slideshow']['navigation'],
 	);
 	
 	$options[] = array(
@@ -599,7 +599,7 @@ function optionsframework_options() {
 		'desc'	=> __('Check to allow navigating prev/next slides with keyboard arrow keys', 'echotheme'),
 		'type' 	=> 'checkbox',
 		'id' 	=> 'slideshow-keyboard',
-		'std'	=> $Std['slideshow']['keyboard'],
+		'std'	=> $defaults['slideshow']['keyboard'],
 	);
 	
 	
@@ -645,7 +645,7 @@ function optionsframework_options() {
 		'desc'	=> __('Choose reCAPTCHA them', 'echotheme'),
 		'type' 	=> 'select',
 		'id' 	=> 'recaptcha-theme',
-		'std'	=> $Std['recaptcha']['theme'],
+		'std'	=> $defaults['recaptcha']['theme'],
 		'class'	=> 'mini',
 		'options' => array(
 			'white' => 'White', 

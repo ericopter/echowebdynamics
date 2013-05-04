@@ -11,6 +11,7 @@ if ($query->have_posts()) :
 
 if (of_get_option('home-slideshow-width') == 'framed'): ?>
 <div class="container">
+	<div class="space-20"></div>
 <?php endif ?>
 
 <div id="home-slideshow" class="controls-container">
