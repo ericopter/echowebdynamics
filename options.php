@@ -42,7 +42,7 @@ function optionsframework_options() {
 				'1120' 		=> '1120px',
 			),
 			'site-layout' => array(
-				'full' 		=> $imagepath . 'option-layout-full.png',
+				'fullwidth'	=> $imagepath . 'option-layout-full.png',
 				'framed' 	=> $imagepath . 'option-layout-framed.png',
 			),
 			'sidebar-position' => array(
@@ -75,9 +75,13 @@ function optionsframework_options() {
 		),
 		'slideshow' => array(
 			'display' => 1,
-			'home-width' => array(
+			'layout' => array(
 				'full' => 'Full Width',
 				'framed' => 'Framed'
+			),
+			'type' => array(
+				'flexslider' => 'Flexslider',
+				'nivoslider' => 'NivoSlider'
 			),
 			'delay' => 6,
 			'speed' => 6,
@@ -126,7 +130,8 @@ function optionsframework_options() {
 		),
 		'slideshow' => array(
 			'display' => 1,
-			'home-width' => 'framed',
+			'layout' => 'framed',
+			'type' => 'Flexslider',
 			'delay' => 6,
 			'speed' => 6,
 			'effect' => 'fading',
@@ -489,12 +494,22 @@ function optionsframework_options() {
 	);
 	
 	$options[] = array(
+		'name' 	=> __('Homepage Slideshow Type', 'echotheme'),
+		'desc'	=> __('What type of slideshow would you like to use?', 'echotheme'),
+		'type' 	=> 'select',
+		'id' 	=> 'home-slideshow-type',
+		'std'	=> $defaults['slideshow']['type'],
+		'options' => $optionsArr['slideshow']['type'],
+		'class' => 'mini'
+	);
+	
+	$options[] = array(
 		'name' 	=> __('Homepage Slideshow Width', 'echotheme'),
 		'desc'	=> __('Do you want the slideshow full screen width or to match the content width?', 'echotheme'),
 		'type' 	=> 'radio',
-		'id' 	=> 'home-slideshow-width',
-		'std'	=> $defaults['slideshow']['home-width'],
-		'options' => $optionsArr['slideshow']['home-width']
+		'id' 	=> 'home-slideshow-layout',
+		'std'	=> $defaults['slideshow']['layout'],
+		'options' => $optionsArr['slideshow']['layout']
 	);
 	
 	$options[] = array(

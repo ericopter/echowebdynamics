@@ -114,7 +114,8 @@
 			
 			// display the home page slideshow
 			if (is_front_page() && of_get_option('slideshow-display')): 
-			get_template_part('part', 'flexslider-home');
+			// get_template_part('part', 'flexslider-home');
+			get_template_part('part', 'homepage-slideshow');
 			endif;
 			?>
 			<div class="space-20"></div>
