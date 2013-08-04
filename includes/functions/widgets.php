@@ -11,7 +11,7 @@ $widgets = array(
 );
 
 foreach ($widgets as $file) {
-	$file = __DIR__ . '/../widgets/' . $file . '.php';
+	$file = INCLUDEPATH . 'widgets/' . $file . '.php';
 
 	if (is_file($file)) {
 		require_once($file);

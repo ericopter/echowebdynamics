@@ -20,7 +20,7 @@ $post_types = array(
 );
 
 foreach ($post_types as $file) {
-	$file = __DIR__ . '/../post-types/' . $file . '.php';
+	$file = INCLUDEPATH . 'post-types/' . $file . '.php';
 
 	if (is_file($file)) {
 		require_once($file);
